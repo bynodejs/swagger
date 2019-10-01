@@ -2,6 +2,10 @@
   "name": "swagger-example",
   "version": "0.0.0",
   "private": true,
+  "description": "swagger UI example",
+  "author": "AGUMON",
+  "license": "ISC",
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
@@ -12,5 +16,14 @@
     "morgan": "~1.9.1",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bynodejs/swagger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bynodejs/swagger/issues"
+  },
+  "homepage": "https://github.com/bynodejs/swagger#readme"
 }
