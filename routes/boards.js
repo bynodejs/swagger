@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-const router = require('express').Router();
+const router = require("express").Router();
 
-const board = require('../controllers/board.ctrl');
+const boards = require("../controllers/boards.ctrl");
 
 /**
  * @swagger
- * /board:
+ * /boards:
  *  get:
  *    summary: 게시글 리스트 조회
- *    tags: [Board]
+ *    tags: [BOARD]
  *    responses:
  *      200:
  *         $ref: '#/components/res/Ok'
@@ -18,9 +18,8 @@ const board = require('../controllers/board.ctrl');
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.get('/', (req, res, next) => {
-
-  board
+router.get("/", (req, res, next) => {
+  boards
     .get_board_list()
     .then(result => {
       res.status(200).json(result);
@@ -32,10 +31,10 @@ router.get('/', (req, res, next) => {
 
 /**
  * @swagger
- * /board/{board_id}:
+ * /boards/{board_id}:
  *  get:
  *    summary: 게시글 상세 조회
- *    tags: [Board]
+ *    tags: [BOARD]
  *    parameters:
  *      - in: path
  *        name: board_id
@@ -53,10 +52,10 @@ router.get('/', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.get('/:board_id(\\d+)', (req, res, next) => {
+router.get("/:board_id(\\d+)", (req, res, next) => {
   const { board_id } = req.params;
 
-  board
+  boards
     .get_board_detail(board_id)
     .then(result => {
       res.status(200).json(result);
@@ -68,10 +67,10 @@ router.get('/:board_id(\\d+)', (req, res, next) => {
 
 /**
  * @swagger
- * /board:
+ * /boards:
  *  post:
  *    summary: 게시글 생성
- *    tags: [Board]
+ *    tags: [BOARD]
  *    consumes:
  *      - application/json
  *    parameters:
@@ -92,13 +91,13 @@ router.get('/:board_id(\\d+)', (req, res, next) => {
  *      500:
  *        $ref: '#/components/res/InternalServerError'
  */
-router.post('/', (req, res, next) => {
+router.post("/", (req, res, next) => {
   const data = req.body;
 
-  board
+  boards
     .create_board(data)
     .then(() => {
-      res.status(201).json({ 'created': true });
+      res.status(201).json({ created: true });
     })
     .catch(error => {
       next(error);
@@ -107,10 +106,10 @@ router.post('/', (req, res, next) => {
 
 /**
  * @swagger
- * /board/{board_id}:
+ * /boards/{board_id}:
  *  put:
  *    summary: 게시글 수정
- *    tags: [Board]
+ *    tags: [BOARD]
  *    consumes:
  *      - applicaion/json
  *    parameters:
@@ -137,13 +136,14 @@ router.post('/', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.put('/:board_id(\\d+)', (req, res, next) => {
-  const { board_id } = req.params, data = req.body;
+router.put("/:board_id(\\d+)", (req, res, next) => {
+  const { board_id } = req.params,
+    data = req.body;
 
-  board
+  boards
     .update_board(board_id, data)
     .then(() => {
-      res.status(200).json({ 'updated': true });
+      res.status(200).json({ updated: true });
     })
     .catch(error => {
       next(error);
@@ -152,10 +152,10 @@ router.put('/:board_id(\\d+)', (req, res, next) => {
 
 /**
  * @swagger
- * /board/{board_id}:
+ * /boards/{board_id}:
  *  delete:
  *    summary: 게시글 삭제
- *    tags: [Board]
+ *    tags: [BOARD]
  *    parameters:
  *      - in: path
  *        name: board_id
@@ -171,13 +171,13 @@ router.put('/:board_id(\\d+)', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.delete('/:board_id(\\d+)', (req, res, next) => {
+router.delete("/:board_id(\\d+)", (req, res, next) => {
   const { board_id } = req.params;
 
-  board
+  boards
     .delete_board(board_id)
     .then(() => {
-      res.status(200).json({ 'deleted': true });
+      res.status(200).json({ deleted: true });
     })
     .catch(error => {
       next(error);

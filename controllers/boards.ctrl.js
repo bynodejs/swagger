@@ -1,6 +1,6 @@
 'use strict';
 
-const BoardModel = require('../models/board.model');
+const BoardModel = require('../models/boards.model');
 
 const error = require('../lib/error');
 

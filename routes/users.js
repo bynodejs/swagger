@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-const router = require('express').Router();
+const router = require("express").Router();
 
-const user = require('../controllers/user.ctrl');
+const users = require("../controllers/users.ctrl");
 
 /**
  * @swagger
- * /user:
+ * /users:
  *  get:
  *    summary: 유저 리스트 조회
- *    tags: [User]
+ *    tags: [USER]
  *    responses:
  *      200:
  *         $ref: '#/components/res/Ok'
@@ -18,24 +18,23 @@ const user = require('../controllers/user.ctrl');
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.get('/', (req, res, next) => {
-
-    user
-        .get_user_list()
-        .then(result => {
-            res.status(200).json(result);
-        })
-        .catch(error => {
-            next(error);
-        });
+router.get("/", (req, res, next) => {
+  users
+    .get_user_list()
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 /**
  * @swagger
- * /user/{user_id}:
+ * /users/{user_id}:
  *  get:
  *    summary: 유저 상세 조회
- *    tags: [User]
+ *    tags: [USER]
  *    parameters:
  *      - in: path
  *        name: user_id
@@ -53,25 +52,25 @@ router.get('/', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.get('/:user_id(\\d+)', (req, res, next) => {
-    const { user_id } = req.params;
+router.get("/:user_id(\\d+)", (req, res, next) => {
+  const { user_id } = req.params;
 
-    user
-        .get_user_detail(user_id)
-        .then(result => {
-            res.status(200).json(result);
-        })
-        .catch(error => {
-            next(error);
-        });
+  users
+    .get_user_detail(user_id)
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 /**
  * @swagger
- * /user:
+ * /users:
  *  post:
  *    summary: 유저 생성
- *    tags: [User]
+ *    tags: [USER]
  *    consumes:
  *      - application/json
  *    parameters:
@@ -92,25 +91,25 @@ router.get('/:user_id(\\d+)', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.post('/', (req, res, next) => {
-    const data = req.body;
+router.post("/", (req, res, next) => {
+  const data = req.body;
 
-    user
-        .create_user(data)
-        .then(() => {
-            res.status(201).json({ 'created': true });
-        })
-        .catch(error => {
-            next(error);
-        });
+  users
+    .create_user(data)
+    .then(() => {
+      res.status(201).json({ created: true });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 /**
  * @swagger
- * /user/{user_id}:
+ * /users/{user_id}:
  *  put:
  *    summary: 유저 수정
- *    tags: [User]
+ *    tags: [USER]
  *    consumes:
  *      - application/json
  *    parameters:
@@ -137,28 +136,29 @@ router.post('/', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.put('/:user_id(\\d+)', (req, res, next) => {
-    const { user_id } = req.params, data = req.body;
+router.put("/:user_id(\\d+)", (req, res, next) => {
+  const { user_id } = req.params,
+    data = req.body;
 
-    user
-        .update_user(user_id, data)
-        .then(() => {
-            res.status(200).json({ 'updated': true });
-        })
-        .catch(error => {
-            next(error);
-        });
+  users
+    .update_user(user_id, data)
+    .then(() => {
+      res.status(200).json({ updated: true });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 /**
  * @swagger
- * /user/{user_id}:
+ * /users/{user_id}:
  *  delete:
  *    summary: 유저 삭제
- *    tags: [User]
+ *    tags: [USER]
  *    parameters:
  *      - in: path
- *        name: user_id  
+ *        name: user_id
  *        schema:
  *          type: integer
  *        required: true
@@ -171,17 +171,17 @@ router.put('/:user_id(\\d+)', (req, res, next) => {
  *      500:
  *         $ref: '#/components/res/InternalServerError'
  */
-router.delete('/:user_id(\\d+)', (req, res, next) => {
-    const { user_id } = req.params;
+router.delete("/:user_id(\\d+)", (req, res, next) => {
+  const { user_id } = req.params;
 
-    user
-        .delete_user(user_id)
-        .then(() => {
-            res.status(200).json({ 'deleted': true });
-        })
-        .catch(error => {
-            next(error);
-        });
+  users
+    .delete_user(user_id)
+    .then(() => {
+      res.status(200).json({ deleted: true });
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 module.exports = router;

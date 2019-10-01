@@ -11,19 +11,19 @@ Index
 
 __▸ USER__
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/routes/user.js">route</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/routes/users.js">route</a>
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/controllers/user.ctrl.js">controller</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/controllers/users.ctrl.js">controller</a>
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/models/user.model.js">model</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/models/users.model.js">model</a>
 
 __▸ BOARD__
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/routes/board.js">route</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/routes/boards.js">route</a>
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/controllers/board.ctrl.js">controller</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/controllers/boards.ctrl.js">controller</a>
 
-* <a href="https://github.com/bynodejs/swagger/blob/master/models/board.model.js">model</a>
+* <a href="https://github.com/bynodejs/swagger/blob/master/models/boards.model.js">model</a>
 
 
 Modules

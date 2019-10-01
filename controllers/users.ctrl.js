@@ -1,6 +1,6 @@
 'use strict';
 
-const UserModel = require('../models/user.model');
+const UserModel = require('../models/users.model');
 
 const error = require('../lib/error');
 
